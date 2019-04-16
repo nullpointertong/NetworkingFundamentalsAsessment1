@@ -19,7 +19,13 @@ while True:
     print('Ready to serve... IP = ' + Socket.gethostbyname(hostname))
     connectionSocket, addr = serverSocket.accept()      
     try:
-        message = connectionSocket.recv(1024)  #Fill in start          #Fill in end               
+        message = connectionSocket.recv(1024)  #Fill in start          #Fill in end        
+            
+        if not message:
+            print('Client side attempting to Close Connection, continuing')
+            connectionSocket.close()            
+            continue   
+
         filename = message.split()[1]                 
         f = open(filename[1:])                        
         outputdata = f.read() #Fill in start       #Fill in end                   
@@ -28,6 +34,7 @@ while True:
         #Fill in start
         #Fill in end                
         #Send the content of the requested file to the client
+    
         for i in range(0, len(outputdata)):           
             connectionSocket.send(outputdata[i].encode())
         connectionSocket.send("\r\n".encode())
@@ -35,7 +42,8 @@ while True:
         connectionSocket.close()
     except IOError:
         #Send response message for file not found
-        print("HelloWorld.html is not found in the same directory")
+        print("ERROR 404 TRY AGAIN")
+        connectionSocket.send('Error 404: File not found'.encode())
         #Fill in start        
         #Fill in end
         #Close client socket
