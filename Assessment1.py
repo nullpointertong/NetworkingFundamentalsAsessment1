@@ -5,22 +5,25 @@ import socket as Socket
 import sys # In order to terminate the program
 from _thread import *
 
+
+
+serverSocket = socket(AF_INET, SOCK_STREAM)
+#Intilaizing The socket
+hostname = Socket.gethostname()
+#Calling the .gethostname() function to use the .gethostbyname function
+socketNum = 80 
+#Default socket
+serverSocket.bind((Socket.gethostbyname(hostname), socketNum))
+#Socket.gethostbyname(hostname) grabs the ip using the hostname grabed from previous function
+serverSocket.listen(1)
+#Enable a server to accept connections. it specifies the number of unaccepted connections that the system will allow before 
+#refusing new connections. If not specified, a default reasonable value is chosen.
+
+
 #Prepare a sever socket 
 #Fill in start
 #Fill in end
 def client_thread():
-    serverSocket = socket(AF_INET, SOCK_STREAM)
-    #Intilaizing The socket
-    hostname = Socket.gethostname()
-    #Calling the .gethostname() function to use the .gethostbyname function
-    socketNum = 80 
-    #Default socket
-    serverSocket.bind((Socket.gethostbyname(hostname), socketNum))
-    #Socket.gethostbyname(hostname) grabs the ip using the hostname grabed from previous function
-    serverSocket.listen(1)
-    #Enable a server to accept connections. it specifies the number of unaccepted connections that the system will allow before 
-    #refusing new connections. If not specified, a default reasonable value is chosen.
-
     while True:    
         #Establish the connection
         print('Ready to serve... IP = ' + Socket.gethostbyname(hostname))
