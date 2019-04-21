@@ -52,6 +52,7 @@ def client_thread():
     
             for i in range(0, len(outputdata)):           
                 connectionSocket.send(outputdata[i].encode())
+                
             connectionSocket.send("\r\n".encode())
             #Send encoded data to socket.
             connectionSocket.close()
@@ -67,10 +68,9 @@ def client_thread():
             connectionSocket.close()
             #Fill in start
             #Fill in end            
-
-    serverSocket.close()
-    sys.exit()#Terminate the program after sending the corresponding data                                    
-
+                                      
 while True:
     start_new_thread(client_thread())
-    #client_thread()
+    serverSocket.close()
+    sys.exit()
+    #Terminate the program after sending the corresponding data  
