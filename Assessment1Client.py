@@ -1,12 +1,21 @@
 from socket import *
-serverName = '172.19.155.118'
-serverPort = 12000
+import socket as Socket
+
+
+hostname = Socket.gethostname()
+serverName = Socket.gethostbyname(hostname)
+filename = "HelloWorld.html"
+serverPort = 80
+
 clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName,serverPort))
-sentence = input('Input a lower case sentence : ')
-clientSocket.send(sentence.encode())
 
-modifiedSentence = clientSocket.recv(1024)
-print ('From Server : ',modifiedSentence.decode())
+string = "HTTP/1.1/" + filename + " 200 OK\r\n\r\n"
+
+clientSocket.send(string.encode())
+httpV = clientSocket.recv(1024)
+
+
+print ('From Server : ',httpV.decode())
 clientSocket.close()
 print ("complete")
