@@ -15,7 +15,7 @@ socketNum = 80
 #Default socket
 serverSocket.bind((Socket.gethostbyname(hostname), socketNum))
 #Socket.gethostbyname(hostname) grabs the ip using the hostname grabed from previous function
-serverSocket.listen(1)
+serverSocket.listen(10)
 #Enable a server to accept connections. it specifies the number of unaccepted connections that the system will allow before 
 #refusing new connections. If not specified, a default reasonable value is chosen.
 
