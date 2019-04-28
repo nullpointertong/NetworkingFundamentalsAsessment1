@@ -28,7 +28,7 @@ print(l_bytes)
 
 r_bytes = 0
 chunks = []
-while r_bytes < 50:
+while r_bytes < 400:
 	httpV = clientSocket.recv(l_bytes)
 	chunks += httpV.decode(),
 	r_bytes = r_bytes + len(httpV)
