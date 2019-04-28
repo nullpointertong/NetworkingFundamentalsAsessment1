@@ -32,7 +32,7 @@ while r_bytes < 400:
 	httpV = clientSocket.recv(l_bytes)
 	chunks += httpV.decode(),
 	r_bytes = r_bytes + len(httpV)
-	print(r_bytes)
+	#print(r_bytes)
 	r_bytes+=1
 
 print ('From Server : ', ''.join(chunks))

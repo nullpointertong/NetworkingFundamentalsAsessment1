@@ -63,7 +63,7 @@ def client_thread(connectionSocket, addr):
         except IOError as e:
             #Send response message for file not found
             print("ERROR 404 TRY AGAIN")
-            print(">>>>" +str(e) + "<<<")
+            #print(">>>>" +str(e) + "<<<")
             # connectionSocket.send('Error 404: File not found'.encode())
             # connectionSocket.send(str(e).encode())
             #Display it in a browser page
