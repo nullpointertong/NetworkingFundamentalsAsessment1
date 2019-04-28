@@ -64,8 +64,8 @@ def client_thread(connectionSocket, addr):
             #Send response message for file not found
             print("ERROR 404 TRY AGAIN")
             #print(">>>>" +str(e) + "<<<")
-            connectionSocket.send('Error 404: File not found'.encode())
-            # connectionSocket.send(str(e).encode())
+            #connectionSocket.send('Error 404: File not found'.encode())
+            #connectionSocket.send(str(e).encode())
             #Display it in a browser page
             #Fill in start        
             #Fill in end
