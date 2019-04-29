@@ -1,5 +1,6 @@
 from socket import *
 import socket as Socket
+import sys
 
 
 hostname = Socket.gethostname()
@@ -19,32 +20,21 @@ header = {
 serverPort = 80   
 
 http_header = "\r\n".join("%s:%s" %(item,header[item]) for item in header)
-print (http_header)
+#print (http_header)
 
 http =  http_header + "\r\n\r\n"
 
 l_bytes = clientSocket.send(http.encode())
-print(l_bytes)
+#print(l_bytes)
 
-r_bytes = 0
+r_bytes = 0	
 chunks = []
-while r_bytes < 400:
+while r_bytes < 1024:
 	httpV = clientSocket.recv(l_bytes)
 	chunks += httpV.decode(),
-	r_bytes = r_bytes + len(httpV)
+	r_bytes = r_bytes + sys.getsizeof(l_bytes)
 	#print(r_bytes)
-	r_bytes+=1
 
 print ('From Server : ', ''.join(chunks))
 clientSocket.close()
 print ("complete")
-
-
-
-#  while bytes_recd < MSGLEN:
-#             chunk = self.sock.recv(min(MSGLEN - bytes_recd, 2048))
-#             if chunk == b'':
-#                 raise RuntimeError("socket connection broken")
-#             chunks.append(chunk)
-#             bytes_recd = bytes_recd + len(chunk)
-#         return b''.join(chunks)
