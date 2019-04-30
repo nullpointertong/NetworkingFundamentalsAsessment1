@@ -20,12 +20,12 @@ header = {
 serverPort = 80   
 
 http_header = "\r\n".join("%s:%s" %(item,header[item]) for item in header)
-#print (http_header)
+
 
 http =  http_header + "\r\n\r\n"
 
 l_bytes = clientSocket.send(http.encode())
-#print(l_bytes)
+
 
 r_bytes = 0	
 chunks = []
@@ -33,7 +33,7 @@ while r_bytes < 1024:
 	httpV = clientSocket.recv(l_bytes)
 	chunks += httpV.decode(),
 	r_bytes = r_bytes + sys.getsizeof(l_bytes)
-	#print(r_bytes)
+
 
 print ('From Server : ', ''.join(chunks))
 clientSocket.close()
